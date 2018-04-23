@@ -1,6 +1,6 @@
 package com.github.small.ac.abst.dao;
 
-import com.github.small.ac.reflection.Reflection;
+import com.github.small.reflection.Reflection;
 
 public abstract class AbstractEntityDAO<T> implements InterfaceEntityDAO<T> {
 

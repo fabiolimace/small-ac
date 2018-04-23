@@ -39,38 +39,6 @@ public class BasicUtil {
 	private static boolean isNotNull(Object object) {
 		return (!(isNull(object)));
 	}
-	
-    public static String toLowerCamelCase(String string) {
-        char chars[]= string.toCharArray();
-        chars[0] = Character.toLowerCase(chars[0]);
-        string = new String(chars);
-        return string;
-    }
-
-    public static String toUpperCamelCase(String string) {
-        char chars[]= string.toCharArray();
-        chars[0] = Character.toUpperCase(chars[0]);
-        string = new String(chars);
-        return string;
-    }
-
-    private static String toSnakeCase(String string) {
-
-        StringBuffer buffer = new StringBuffer();
-        int i = 0;
-        for (char c : string.toCharArray()) {
-            if (i > 0 && Character.isUpperCase(c)) {
-                buffer.append('_');
-            }
-            buffer.append(Character.toLowerCase(c));
-            i++;
-        }
-        return buffer.toString();
-    }
-
-    public static String getDatabaseObjectIdentifier(String javaObjectIdentifier) {
-        return toSnakeCase(javaObjectIdentifier);
-    }
 
     @SuppressWarnings("unchecked")
 	public static <T> T[] concat(T[] array1, T... array2) {

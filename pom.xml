@@ -30,6 +30,13 @@
 			<version>0.1.1</version>
 			<scope>compile</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>com.github</groupId>
+			<artifactId>small-reflection</artifactId>
+			<version>0.1.1</version>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 
 </project>
