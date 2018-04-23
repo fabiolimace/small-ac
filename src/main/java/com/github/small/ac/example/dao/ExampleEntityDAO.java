@@ -1,4 +1,4 @@
-package com.github.small.ac.demo.dao;
+package com.github.small.ac.example.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,11 +9,11 @@ import java.util.UUID;
 import com.github.small.ac.abst.dao.AbstractEntityDAO;
 import com.github.small.ac.abst.AbstractEntity;
 
-public class DemoEntityDAO<T extends AbstractEntity> extends AbstractEntityDAO<T> {
+public class ExampleEntityDAO<T extends AbstractEntity> extends AbstractEntityDAO<T> {
 
 	protected Set<T> entities;
 
-	public DemoEntityDAO(Class<? extends T> clazz) {
+	public ExampleEntityDAO(Class<? extends T> clazz) {
 		super(clazz);
 		this.entities = new TreeSet<>();
 	}

@@ -1,4 +1,4 @@
-package com.github.small.ac.demo.dao;
+package com.github.small.ac.example.dao;
 
 import com.github.small.ac.abst.dao.AbstractBinaryRelationDAO;
 import com.github.small.ac.abst.dao.AbstractDAOFactory;
@@ -14,55 +14,55 @@ import com.github.small.ac.conc.SessionRole;
 import com.github.small.ac.conc.User;
 import com.github.small.ac.conc.UserAssignment;
 
-public class DemoDAOFactory extends AbstractDAOFactory {
+public class ExampleDAOFactory extends AbstractDAOFactory {
 
 	@Override
 	public AbstractEntityDAO<User> getUserDAO() {
-		return new DemoUserDAO();
+		return new ExampleUserDAO();
 	}
 
 	@Override
 	public AbstractEntityDAO<Role> getRoleDAO() {
-		return new DemoRoleDAO();
+		return new ExampleRoleDAO();
 	}
 
 	@Override
 	public AbstractEntityDAO<Resource> getResourceDAO() {
-		return new DemoResourceDAO();
+		return new ExampleResourceDAO();
 	}
 
 	@Override
 	public AbstractEntityDAO<Operation> getOperationDAO() {
-		return new DemoOperationDAO();
+		return new ExampleOperationDAO();
 	}
 
 	@Override
 	public AbstractEntityDAO<Session> getSessionDAO() {
-		return new DemoSessionDAO();
+		return new ExampleSessionDAO();
 	}
 
 	@Override
 	public AbstractBinaryRelationDAO<Permission, Resource, Operation> getPermissionDAO() {
-		return new DemoPermissionDAO();
+		return new ExamplePermissionDAO();
 	}
 
 	@Override
 	public AbstractBinaryRelationDAO<UserAssignment, User, Role> getUserAssignmentDAO() {
-		return new DemoUserAssignment();
+		return new ExampleUserAssignment();
 	}
 
 	@Override
 	public AbstractBinaryRelationDAO<PermissionAssignment, Permission, Role> getPermissionAssignmentDAO() {
-		return new DemoPermissionAssignmentDAO();
+		return new ExamplePermissionAssignmentDAO();
 	}
 
 	@Override
 	public AbstractBinaryRelationDAO<RoleHierarchy, Role, Role> getRoleHierarchyDAO() {
-		return new DemoRoleHierarchyDAO();
+		return new ExampleRoleHierarchyDAO();
 	}
 
 	@Override
 	public AbstractBinaryRelationDAO<SessionRole, Session, Role> getSessionRoleDAO() {
-		return new DemoSessionRoleDAO();
+		return new ExampleSessionRoleDAO();
 	}
 }

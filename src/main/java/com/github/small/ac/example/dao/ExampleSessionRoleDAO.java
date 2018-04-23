@@ -1,4 +1,4 @@
-package com.github.small.ac.demo.dao;
+package com.github.small.ac.example.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +9,9 @@ import com.github.small.ac.conc.Session;
 import com.github.small.ac.conc.SessionRole;
 import com.github.small.ac.other.BasicUtil;
 
-public class DemoSessionRoleDAO extends DemoBinaryRelationDAO<SessionRole, Session, Role> {
+public class ExampleSessionRoleDAO extends ExampleBinaryRelationDAO<SessionRole, Session, Role> {
 
-	public DemoSessionRoleDAO() {
+	public ExampleSessionRoleDAO() {
 		super(SessionRole.class, Session.class, Role.class);
 	}
 

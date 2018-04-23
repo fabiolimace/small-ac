@@ -1,4 +1,4 @@
-package com.github.small.ac.demo.dao;
+package com.github.small.ac.example.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +10,9 @@ import com.github.small.ac.conc.PermissionAssignment;
 import com.github.small.ac.conc.Role;
 import com.github.small.ac.other.BasicUtil;
 
-public class DemoPermissionAssignmentDAO extends DemoBinaryRelationDAO<PermissionAssignment, Permission, Role> {
+public class ExamplePermissionAssignmentDAO extends ExampleBinaryRelationDAO<PermissionAssignment, Permission, Role> {
 
-	public DemoPermissionAssignmentDAO() {
+	public ExamplePermissionAssignmentDAO() {
 		super(PermissionAssignment.class, Permission.class, Role.class);
 	}
 

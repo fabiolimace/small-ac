@@ -1,4 +1,4 @@
-package com.github.small.ac.demo.dao;
+package com.github.small.ac.example.dao;
 
 import java.util.List;
 import java.util.Set;
@@ -8,17 +8,17 @@ import java.util.UUID;
 import com.github.small.ac.abst.AbstractEntity;
 import com.github.small.ac.abst.dao.AbstractBinaryRelationDAO;
 
-public abstract class DemoBinaryRelationDAO<T extends AbstractEntity, A extends AbstractEntity, B extends AbstractEntity>
+public abstract class ExampleBinaryRelationDAO<T extends AbstractEntity, A extends AbstractEntity, B extends AbstractEntity>
 		extends AbstractBinaryRelationDAO<T, A, B> {
 
 	protected Set<T> entities;
-	protected DemoEntityDAO<T> entityDAO; // Inheritance by decoration
+	protected ExampleEntityDAO<T> entityDAO; // Inheritance by decoration
 
-	public DemoBinaryRelationDAO(Class<? extends T> clazz, Class<? extends A> referencedClazz1,
+	public ExampleBinaryRelationDAO(Class<? extends T> clazz, Class<? extends A> referencedClazz1,
 			Class<? extends B> referencedClazz2) {
 		super(clazz, referencedClazz1, referencedClazz2);
 		this.entities = new TreeSet<>();
-		this.entityDAO = new DemoEntityDAO<>(clazz);
+		this.entityDAO = new ExampleEntityDAO<>(clazz);
 	}
 
 	@Override

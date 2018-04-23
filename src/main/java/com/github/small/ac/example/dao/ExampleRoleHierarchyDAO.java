@@ -1,4 +1,4 @@
-package com.github.small.ac.demo.dao;
+package com.github.small.ac.example.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +9,9 @@ import com.github.small.ac.conc.Role;
 import com.github.small.ac.conc.RoleHierarchy;
 import com.github.small.ac.other.BasicUtil;
 
-public class DemoRoleHierarchyDAO extends DemoBinaryRelationDAO<RoleHierarchy, Role, Role> {
+public class ExampleRoleHierarchyDAO extends ExampleBinaryRelationDAO<RoleHierarchy, Role, Role> {
 
-	public DemoRoleHierarchyDAO() {
+	public ExampleRoleHierarchyDAO() {
 		super(RoleHierarchy.class, Role.class, Role.class);
 	}
 

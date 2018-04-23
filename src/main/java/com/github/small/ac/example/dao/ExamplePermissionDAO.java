@@ -1,4 +1,4 @@
-package com.github.small.ac.demo.dao;
+package com.github.small.ac.example.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +10,9 @@ import com.github.small.ac.conc.Permission;
 import com.github.small.ac.conc.Resource;
 import com.github.small.ac.other.BasicUtil;
 
-public class DemoPermissionDAO extends DemoBinaryRelationDAO<Permission, Resource, Operation> {
+public class ExamplePermissionDAO extends ExampleBinaryRelationDAO<Permission, Resource, Operation> {
 
-	public DemoPermissionDAO() {
+	public ExamplePermissionDAO() {
 		super(Permission.class, Resource.class, Operation.class);
 	}
 

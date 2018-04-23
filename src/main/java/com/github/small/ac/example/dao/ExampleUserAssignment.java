@@ -1,4 +1,4 @@
-package com.github.small.ac.demo.dao;
+package com.github.small.ac.example.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +10,9 @@ import com.github.small.ac.conc.User;
 import com.github.small.ac.conc.UserAssignment;
 import com.github.small.ac.other.BasicUtil;
 
-public class DemoUserAssignment extends DemoBinaryRelationDAO<UserAssignment, User, Role> {
+public class ExampleUserAssignment extends ExampleBinaryRelationDAO<UserAssignment, User, Role> {
 
-	public DemoUserAssignment() {
+	public ExampleUserAssignment() {
 		super(UserAssignment.class, User.class, Role.class);
 	}
 
