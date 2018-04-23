@@ -3,16 +3,9 @@ package com.github.small.ac;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.small.ac.abst.dao.AbstractOperationDAO;
-import com.github.small.ac.abst.dao.AbstractPermissionAssignmentDAO;
-import com.github.small.ac.abst.dao.AbstractPermissionDAO;
-import com.github.small.ac.abst.dao.AbstractResourceDAO;
-import com.github.small.ac.abst.dao.AbstractRoleDAO;
-import com.github.small.ac.abst.dao.AbstractRoleHierarchyDAO;
-import com.github.small.ac.abst.dao.AbstractSessionDAO;
-import com.github.small.ac.abst.dao.AbstractSessionRoleDAO;
-import com.github.small.ac.abst.dao.AbstractUserAssignmentDAO;
-import com.github.small.ac.abst.dao.AbstractUserDAO;
+import com.github.small.ac.abst.dao.AbstractBinaryRelationDAO;
+import com.github.small.ac.abst.dao.AbstractDAOFactory;
+import com.github.small.ac.abst.dao.AbstractEntityDAO;
 import com.github.small.ac.conc.Operation;
 import com.github.small.ac.conc.Permission;
 import com.github.small.ac.conc.PermissionAssignment;
@@ -27,18 +20,36 @@ import com.github.small.ac.other.BasicException;
 
 public class AccessControlFacade {
 
-	private AbstractUserDAO userDAO;
-	private AbstractRoleDAO roleDAO;
-	private AbstractResourceDAO resourceDAO;
-	private AbstractOperationDAO operationDAO;
-	private AbstractPermissionDAO permissionDAO;
-	private AbstractUserAssignmentDAO userAssignmentDAO;
-	private AbstractPermissionAssignmentDAO permissionAssignmentDAO;
-	private AbstractRoleHierarchyDAO roleHierarchyDAO;
-	private AbstractSessionDAO sessionDAO;
-	private AbstractSessionRoleDAO sessionRoleDAO;
-
-	public AccessControlFacade() {
+	private AbstractDAOFactory daoFactory;
+	
+	private AbstractEntityDAO<User> userDAO;
+	private AbstractEntityDAO<Role> roleDAO;
+	private AbstractEntityDAO<Resource> resourceDAO;
+	private AbstractEntityDAO<Operation> operationDAO;
+	private AbstractEntityDAO<Session> sessionDAO;
+	
+	
+	private AbstractBinaryRelationDAO<Permission, Resource, Operation> permissionDAO;
+	private AbstractBinaryRelationDAO<UserAssignment, User, Role> userAssignmentDAO;
+	private AbstractBinaryRelationDAO<PermissionAssignment, Permission, Role> permissionAssignmentDAO;
+	private AbstractBinaryRelationDAO<RoleHierarchy, Role, Role> roleHierarchyDAO;
+	private AbstractBinaryRelationDAO<SessionRole, Session, Role> sessionRoleDAO;
+	
+	public AccessControlFacade(AbstractDAOFactory daoFactory) {
+		
+		this.daoFactory = daoFactory;
+		
+		this.userDAO = this.daoFactory.getUserDAO();
+		this.roleDAO = this.daoFactory.getRoleDAO();
+		this.resourceDAO = this.daoFactory.getResourceDAO();
+		this.operationDAO = this.daoFactory.getOperationDAO();
+		this.sessionDAO = this.daoFactory.getSessionDAO();
+		
+		this.permissionDAO = this.daoFactory.getPermissionDAO();
+		this.userAssignmentDAO = this.daoFactory.getUserAssignmentDAO();
+		this.permissionAssignmentDAO = this.daoFactory.getPermissionAssignmentDAO();
+		this.roleHierarchyDAO = this.daoFactory.getRoleHierarchyDAO();
+		this.sessionRoleDAO = this.daoFactory.getSessionRoleDAO();
 		
 	}
 	
@@ -577,8 +588,7 @@ public class AccessControlFacade {
 
 		if (userDAO.exists(user) && roleDAO.exists(role)) {
 
-			UserAssignment userAssignment = userAssignmentDAO.find(
-					user.getId(), role.getId());
+			UserAssignment userAssignment = userAssignmentDAO.findByReferencedEntities(user, role).get(0);
 
 			userAssignmentDAO.delete(userAssignment);
 
@@ -607,8 +617,7 @@ public class AccessControlFacade {
 		if (resourceDAO.exists(resource) && operationDAO.exists(operation)
 				&& roleDAO.exists(role)) {
 
-			Permission permission = permissionDAO.find(resource.getId(),
-					operation.getId());
+			Permission permission = permissionDAO.findByReferencedEntities(resource, operation).get(0);
 
 			grantPermission(permission, role);
 		}
@@ -617,8 +626,7 @@ public class AccessControlFacade {
 	public void revokePermission(Permission permission, Role role) {
 		if (permissionDAO.exists(permission) && roleDAO.exists(role)) {
 
-			PermissionAssignment permissionAssignment = permissionAssignmentDAO
-					.find(permission.getId(), role.getId());
+			PermissionAssignment permissionAssignment = permissionAssignmentDAO.findByReferencedEntities(permission, role).get(0);
 
 			permissionAssignmentDAO.delete(permissionAssignment);
 
@@ -633,8 +641,7 @@ public class AccessControlFacade {
 		if (resourceDAO.exists(resource) && operationDAO.exists(operation)
 				&& roleDAO.exists(role)) {
 
-			Permission permission = permissionDAO.find(resource.getId(),
-					operation.getId());
+			Permission permission = permissionDAO.findByReferencedEntities(resource, operation).get(0);
 
 			revokePermission(permission, role);
 
@@ -677,8 +684,7 @@ public class AccessControlFacade {
 
 	public void deleteInheritance(Role ascendantRole, Role descendantRole) {
 
-		RoleHierarchy roleHierarchy = roleHierarchyDAO.find(
-				ascendantRole.getId(), descendantRole.getId());
+		RoleHierarchy roleHierarchy = roleHierarchyDAO.findByReferencedEntities(ascendantRole, descendantRole).get(0);
 
 		roleHierarchy.setAscendantRole(null);
 		roleHierarchy.setDescendantRole(null);
@@ -753,8 +759,7 @@ public class AccessControlFacade {
 
 		if (existsSession(session) && existsRole(role)) {
 
-			SessionRole sessionRole = sessionRoleDAO.find(
-					session.getId(), role.getId());
+			SessionRole sessionRole = sessionRoleDAO.findByReferencedEntities(session, role).get(0);
 			sessionRoleDAO.delete(sessionRole);
 			session.removeSessionRole(sessionRole);
 			role.removeSessionRole(sessionRole);

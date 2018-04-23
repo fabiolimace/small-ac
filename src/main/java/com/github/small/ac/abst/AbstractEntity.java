@@ -1,30 +1,25 @@
 package com.github.small.ac.abst;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.UUID;
-
-import com.github.small.ac.other.BasicUtil;
+import com.github.small.uuid.UUIDGenerator;
 
 public abstract class AbstractEntity implements Serializable {
 
 	private static final long serialVersionUID = -4889778148919221961L;
-	
-	protected UUID id;
 
-	protected Calendar created;
+	protected UUID id;
 
 	public AbstractEntity() {
 		super();
-		this.id = BasicUtil.getUUID();
-		this.created = Calendar.getInstance();
+		this.id = UUIDGenerator.getCustomUUID();
 	}
 
 	@Override
 	public int hashCode() {
 		return id.hashCode();
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -44,13 +39,5 @@ public abstract class AbstractEntity implements Serializable {
 
 	public void setId(UUID id) {
 		this.id = id;
-	}
-
-	public Calendar getCreated() {
-		return created;
-	}
-
-	public void setCreated(Calendar created) {
-		this.created = created;
 	}
 }

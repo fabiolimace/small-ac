@@ -1,8 +1,9 @@
 package com.github.small.ac.abst.dao;
 
 import java.util.List;
+import java.util.UUID;
 
-public interface InterfaceEntityDAO<T, K> {
+public interface InterfaceEntityDAO<T> {
 
 	void insert(T entity);
 
@@ -12,7 +13,7 @@ public interface InterfaceEntityDAO<T, K> {
 
 	List<T> list();
 
-	T find(K id);
+	T find(UUID id);
 	
 	boolean exists(T entity);
 	
