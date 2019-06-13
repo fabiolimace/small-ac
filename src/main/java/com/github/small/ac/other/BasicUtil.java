@@ -1,16 +1,10 @@
 package com.github.small.ac.other;
 
 import java.util.Collection;
-import java.util.UUID;
 
 public class BasicUtil {
 
 	public BasicUtil() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public static UUID getUUID() {
-		return UUID.randomUUID();
 	}
 	
 	public static boolean isEmpty(Collection<?> list) {

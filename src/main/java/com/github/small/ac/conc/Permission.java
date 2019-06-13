@@ -5,6 +5,7 @@ import static com.github.small.ac.other.BasicUtil.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.f4b6a3.uuid.UuidCreator;
 import com.github.small.ac.abst.AbstractEntity;
 
 public class Permission extends AbstractEntity {
@@ -147,7 +148,7 @@ public class Permission extends AbstractEntity {
 			} else if (this.operation != null) {
 				nameSuggestion = operation.getName();
 			} else {
-				nameSuggestion = getUUID().toString();
+				nameSuggestion = UuidCreator.getFastRandom().toString();
 			}
 		}
 

@@ -2,7 +2,8 @@ package com.github.small.ac.abst;
 
 import java.io.Serializable;
 import java.util.UUID;
-import com.github.small.uuid.UUIDGenerator;
+
+import com.github.f4b6a3.uuid.UuidCreator;
 
 public abstract class AbstractEntity implements Serializable {
 
@@ -12,7 +13,7 @@ public abstract class AbstractEntity implements Serializable {
 
 	public AbstractEntity() {
 		super();
-		this.id = UUIDGenerator.getCustomUUID();
+		this.id = UuidCreator.getSequential();
 	}
 
 	@Override
